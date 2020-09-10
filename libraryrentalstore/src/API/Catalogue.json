@@ -1,0 +1,209 @@
+{
+  "catalogue": {
+    "regularBooks": {
+      "rentCharge": 1.5,
+      "minRentDuration": 2,
+      "minimumCharge": 2,
+      "books": [
+        {
+          "title": "Anthills of the Savannah",
+          "author": "Chinua Achebe",
+          "publisher": "Penguin",
+          "year": 1987
+        },
+        {
+          "title": "Atomic Habits",
+          "author": "James Clear",
+          "publisher": "Avery",
+          "year": 2018
+        },
+        {
+          "title": "Becoming",
+          "author": "Michelle Obama",
+          "publisher": "Crown",
+          "year": 2018
+        },
+        {
+          "title": "Born a Crime",
+          "author": "Trevor Noah",
+          "publisher": "Doubleday Canada",
+          "year": 2016
+        },
+        {
+          "title": "Bookish and the Beast",
+          "author": "Ashley Poston",
+          "publisher": "Quirk Books",
+          "year": 2020
+        },
+        {
+          "title": "Girl, Stop Apologizing: A Shame-Free Plan for Embracing and Achieving Your Goals",
+          "author": "Rachel Hollis",
+          "publisher": "HarperCollins Leadership",
+          "year": 2019
+        },
+        {
+          "title": "No Offense",
+          "author": "Meg Cabot",
+          "publisher": "William Morrow",
+          "year": 2020
+        },
+        {
+          "title": "The Moment of Lift: How Empowering Women Changes the World",
+          "author": "Melinda Gates",
+          "publisher": "Flatiron Books",
+          "year": 2019
+        },
+        {
+          "title": "The Wedding Date Disaster",
+          "author": "Avery Flynn",
+          "publisher": "Entangled,Amara",
+          "year": 2020
+        },
+        {
+          "title": "The Wrong End of the Table",
+          "author": "Ayser Salman ",
+          "publisher": "Skyhorse",
+          "year": 2019
+        },
+        {
+          "title": "We're Going to Need More Wine",
+          "author": "Gabrielle Union",
+          "publisher": "Dey Street Books",
+          "year": 2017
+        }
+      ]
+    },
+    "fictionalBooks": {
+      "rentCharge": 3,
+      "books": [
+        {
+          "title": "Absolution Gap",
+          "author": "Alastair Reynolds",
+          "publisher": "Gollancz",
+          "year": 2003
+        },
+        {
+          "title": "Accelerando",
+          "author": "Charles Stross",
+          "publisher": "Orbit (UK), Ace (US)",
+          "year": 2005
+        },
+        {
+          "title": "Across the Universe",
+          "author": "Beth Revis",
+          "publisher": "Razorbill (Penguin)",
+          "year": 2011
+        },
+        {
+          "title": "The Age of the Pussyfoot",
+          "author": "Frederik Pohl",
+          "publisher": "Ballantine Books",
+          "year": 1969
+        },
+        {
+          "title": "Before You Go",
+          "author": "Tommy Butler",
+          "publisher": "Harper",
+          "year": 2020
+        },
+        {
+          "title": "Big Planet",
+          "author": "Jack Vance",
+          "publisher": "Avalon Books",
+          "year": 1957
+        },
+        {
+          "title": "Brave New World",
+          "author": "Aldous Huxley",
+          "publisher": "Chatto & Windus",
+          "year": 1932
+        },
+        {
+          "title": "Caesar's Column",
+          "author": " Ignatius Donnelly,",
+          "publisher": "F. J. Shulte & Co.",
+          "year": 1890
+        },
+        {
+          "title": "Code of the Lifemaker",
+          "author": "Del Rey Books",
+          "publisher": "Chatto & Windus",
+          "year": 1983
+        },
+        {
+          "title": "Einstein's Dreams",
+          "author": "Alan Lightman",
+          "publisher": "print",
+          "year": 1992
+        },
+        {
+          "title": "Empire of the Atom",
+          "author": "A. E. van Vogt",
+          "publisher": "Shasta Publishers",
+          "year": 1957
+        },
+        {
+          "title": "Star Daughter",
+          "author": "Shveta Thakrar ",
+          "publisher": "HarperTeen",
+          "year": 2020
+        },
+        {
+          "title": "Sisters",
+          "author": "Daisy Johnson",
+          "publisher": "Riverhead Books",
+          "year": 2020
+        }
+      ]
+    },
+    "novels": {
+      "rentCharge": 1.5,
+      "minRentDuration": 3,
+      "minimumCharge": 4.5,
+      "books": [
+        {
+          "title": "The Idylls of the Queen",
+          "author": "Phyllis Ann Karr",
+          "publisher": "Ace Books",
+          "year": 1982
+        },
+        {
+          "title": "The Inheritance Cycle",
+          "author": "Christopher Paolini",
+          "publisher": "Paolini LLC",
+          "year": 2002
+        },
+        {
+          "title": "Ink Exchange",
+          "author": "Melissa Marr",
+          "publisher": "HarperTeen, an imprint of Harper Collins",
+          "year": 2008
+        },
+        {
+          "title": "Ink heart",
+          "author": "Cornelia Funke",
+          "publisher": "Germany Cecilie Dressler",
+          "year": 2005
+        },
+        {
+          "title": "Islandia",
+          "author": "Austin Tappan Wright",
+          "publisher": "Farrar & Rinehart",
+          "year": 1942
+        },
+        {
+          "title": "The Infernal Devices",
+          "author": "Cassandra Clare",
+          "publisher": "Simon & Schuster",
+          "year": 2013
+        },
+        {
+          "title": "The Man Without Qualities",
+          "author": "Robert Musil",
+          "publisher": "Rowohlt Verlag (German)",
+          "year": 1943
+        }
+      ]
+    }
+  }
+}
