@@ -118,6 +118,13 @@ class App extends Component {
     );
   };
 
+  removeFromCollection = ({ target: { name: book } }) => {
+    const { myCollection } = this.state;
+    const newCollection = Object.assign({}, myCollection);
+    delete newCollection[book];
+    this.setState({ myCollection: newCollection });
+  };
+
   render() {
     const {
       addToCollection,
