@@ -1,6 +1,6 @@
 {
   "catalogue": {
-    "regularBooks": {
+    "RegularBooks": {
       "rentCharge": 1.5,
       "minRentDuration": 2,
       "minimumCharge": 2,
@@ -73,7 +73,7 @@
         }
       ]
     },
-    "fictionalBooks": {
+    "FictionalBooks": {
       "rentCharge": 3,
       "books": [
         {
@@ -156,7 +156,7 @@
         }
       ]
     },
-    "novels": {
+    "Novels": {
       "rentCharge": 1.5,
       "minRentDuration": 3,
       "minimumCharge": 4.5,
