@@ -36,8 +36,9 @@ class App extends Component {
     myCollection: {},
   };
 
-  setBookState = (event, { newValue }) =>
-    this.setState({ currentRead: newValue }, console.log(newValue, 'kkkkkkkk'));
+  setBookState = ({ target: { value: currentRead } }) => {
+    this.setState({ currentRead});
+  };
 
   showMessage = (msg, state) => {
     switch (state) {
