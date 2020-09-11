@@ -14,21 +14,5 @@ export const welcomeMessage = () => (
   </div>
 );
 
-export const collectionRow = (title, rentDetails, rowNumber) => {
-  const { rentDuration, numOfBooks } = rentDetails;
-  return (
-    <div key={rowNumber} className='myCollection'>
-      <span>{rowNumber + 1}</span>
-      <span className='titleSpan'>{title}</span>
-      <span>{rentDuration}</span>
-      <span>{numOfBooks}</span>
-    </div>
-  );
-};
 
-export const renderTotalCharge = totalCharge => (
-  <div className='totalCharge'>
-    <span>Total Charge</span>
-    <span>{totalCharge}$</span>
-  </div>
-);
+

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
+import BookForm from './BookForm';
 import Collection from './Collection';
 import Charges from './Charges';
 import { catalogue } from '../API/Catalogue.json';
@@ -14,11 +15,11 @@ import '../index.css';
 
 
 let allBooks = [];
-Object.keys(catalogue).forEach(genre => {
-  const { books, rentCharge, minRentDuration, minimumCharge } = catalogue[genre];
+Object.keys(catalogue).forEach(category => {
+  const { books, rentCharge, minRentDuration, minimumCharge } = catalogue[category];
   books.forEach(book => {
     book.rentCharge = rentCharge;
-    book.genre = genre;
+    book.category = category;
     if (minRentDuration) {
       book.minRentDuration = minRentDuration;
     }
@@ -29,16 +30,35 @@ Object.keys(catalogue).forEach(genre => {
   allBooks = [...allBooks, ...books];
 });
 
+const getSuggestions = (value) => {
+  const inputValue = value.trim().toLowerCase();
+  const inputLength = inputValue.length;
+  return inputLength === 0
+    ? []
+    : allBooks.filter((book) =>
+        book.title.toLowerCase().startsWith(inputValue)
+      );
+};
+
+export const getSuggestionValue = (suggestion) => suggestion.title;
+
+export const renderSuggestion = ({ title, category }) => `${title} - ${category}`;
 
 class App extends Component {
   state = {
     currentRead: '',
     myCollection: {},
+    suggestions: [],
   };
 
-  setBookState = ({ target: { value: currentRead } }) => {
-    this.setState({ currentRead});
+  onSuggestionsFetchRequested = ({ value }) => {
+    this.setState({ suggestions: getSuggestions(value) });
   };
+
+  onSuggestionsClearRequested = () => this.setState({ suggestions: [] });
+
+  setBookState = (event, { newValue }) =>
+    this.setState({ currentRead: newValue });
 
   showMessage = (msg, state) => {
     switch (state) {
@@ -60,11 +80,14 @@ class App extends Component {
       this.showMessage('Enter a valid book title', 'error');
       return;
     }
+
     if (!allBooks.find((book) => book.title === currentRead)) {
-      this.showMessage('Sorry, The book is currently unavailable', 'error');
+      this.showMessage('Sorry, The book in search is currently unavailable', 'error');
       return;
     }
+
     const newCollection = Object.assign({}, myCollection);
+    console.log('xxxxxx', newCollection);
 
     if (newCollection[currentRead]) {
       newCollection[currentRead].numOfBooks += 1;
@@ -75,10 +98,11 @@ class App extends Component {
         rentDuration: defaultRentDuration,
         numOfBooks: defaultBookCount,
       };
-      this.setState({ myCollection: newCollection, currentRead: '' }, () =>
-        this.calculateCharge(currentRead)
-      );
     }
+
+    this.setState({ myCollection: newCollection, currentRead: '' }, () =>
+      this.calculateTotalCharges(currentRead)
+    );
   };
 
   addNumOfBooks = ({ target: { name: book, value } }) => {
@@ -90,7 +114,7 @@ class App extends Component {
     const newCollection = Object.assign({}, myCollection);
     newCollection[book].numOfBooks = parseInt(value, 10);
     this.setState({ myCollection: newCollection }, () =>
-      this.calculateCharge(book)
+      this.calculateTotalCharges(book)
     );
   };
 
@@ -103,7 +127,7 @@ class App extends Component {
     const newCollection = Object.assign({}, myCollection);
     newCollection[book].rentDuration = parseInt(value, 10);
     this.setState({ myCollection: newCollection }, () =>
-      this.calculateCharge(book)
+      this.calculateTotalCharges(book)
     );
   };
 
@@ -152,38 +176,54 @@ class App extends Component {
     const {
       state,
       setBookState,
+      showMessage,
       addToCollection,
       addRentDays,
       addNumOfBooks,
       removeFromCollection,
       getTotalCharge,
+      onSuggestionsFetchRequested,
+      onSuggestionsClearRequested,
     } = this;
-    const { currentRead, myCollection } = state;
+    const { currentRead, myCollection, suggestions } = state;
+
+    console.log('powerrrrrr', state);
 
     const notEmptyCollection = Object.keys(myCollection).length > 0;
     const disableInputs = Object.keys(myCollection).length >= maxRentedBooks;
+
+    if (disableInputs) {
+      showMessage('Limit exceeded for books to be rented', 'warn');
+    }
+
+    const inputProps = {
+      placeholder: 'Meet your next book',
+      value: currentRead,
+      onChange: setBookState,
+      type: 'search',
+    };
+
+    const autoSuggestProps = {
+      suggestions,
+      onSuggestionsFetchRequested,
+      onSuggestionsClearRequested,
+      getSuggestionValue,
+      renderSuggestion,
+      inputProps,
+    };
 
     return (
       <div className='container'>
         <div className='welcomeMessage'>
           {welcomeMessage()}
 
-          <div className='cover'>
-            <form className='form' onSubmit={addToCollection}>
-              <input
-                type='search'
-                auto-complete='library'
-                disabled={disableInputs}
-                value={currentRead}
-                onChange={setBookState}
-                placeholder='Meet your next book'
-              />
-              <input
-                type='submit'
-                disabled={disableInputs}
-                value='Add to Collection'
-              />
-            </form>
+          <div>
+            <ToastContainer position={toast.POSITION.TOP_CENTER} />
+            <BookForm
+              autoSuggestProps={autoSuggestProps}
+              disabled={disableInputs}
+              onSubmit={addToCollection}
+            />
             {notEmptyCollection && (
               <Collection
                 removeFromCollection={removeFromCollection}
