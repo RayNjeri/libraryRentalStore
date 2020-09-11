@@ -3,7 +3,7 @@ import { func, number, string } from 'prop-types';
 
 const CollectionRow = ({
   title,
-  genre,
+  category,
   rentDuration,
   charges,
   numOfBooks,
@@ -13,7 +13,7 @@ const CollectionRow = ({
 }) => (
   <div className='collections-row'>
     <span className='titleSpan'>{title}</span>
-    <span className='genre'>{genre}</span>
+    <span className='category'>{category}</span>
     <input
       className='copies'
       name={title}
@@ -44,7 +44,7 @@ const CollectionRow = ({
 
 CollectionRow.propTypes = {
   title: string.isRequired,
-  genre: string.isRequired,
+  category: string.isRequired,
   charges: number.isRequired,
   rentDuration: number.isRequired,
   numOfBooks: number.isRequired,

@@ -6,9 +6,9 @@ import CollectionRow from './CollectionsRow';
 const Header= (
   <div className='collections-header'>
     <span className='titleSpan'>Book Title</span>
-    <span className='genre'>Genre</span>
+    <span className='category'>Category</span>
     <span className='book-copies'>Copies</span>
-    <span className='rent-duration'>Duration (Days)</span>
+    <span className='rent-duration'>Rent Duration</span>
     <span className='charges'>Charges</span>
     <span className='action' />
   </div>
