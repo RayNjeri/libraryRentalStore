@@ -92,6 +92,32 @@ class App extends Component {
     }
   };
 
+  addNumOfBooks = ({ target: { name: book, value } }) => {
+    if (value < 1) {
+      this.showMessage('Minimum Number of books to be rented is 1', 'error');
+      return;
+    }
+    const { myCollection } = this.state;
+    const newCollection = Object.assign({}, myCollection);
+    newCollection[book].numOfBooks = parseInt(value, 10);
+    this.setState({ myCollection: newCollection }, () =>
+      this.calculateCharge(book)
+    );
+  };
+
+  addRentDays = ({ target: { name: book, value } }) => {
+    if (value < 1) {
+      this.showMessage('Minimum rent duration is one day', 'error');
+      return;
+    }
+    const { myCollection } = this.state;
+    const newCollection = Object.assign({}, myCollection);
+    newCollection[book].rentDuration = parseInt(value, 10);
+    this.setState({ myCollection: newCollection }, () =>
+      this.calculateCharge(book)
+    );
+  };
+
   render() {
     const {
       addToCollection,
