@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 
+import Collection from './Collection';
+import Charges from './Charges';
 import { catalogue } from '../API/Catalogue.json';
-
 import {
   defaultRentDuration,
   defaultBookCount,
   maxRentedBooks,
   welcomeMessage,
-  collectionRow,
-  renderTotalCharge,
 } from './Utils';
 import '../index.css';
 
@@ -38,18 +37,7 @@ class App extends Component {
   };
 
   setBookState = (event, { newValue }) =>
-    this.setState({ currentRead: newValue });
-
-  calculateTotalCharges = () => {
-    const { myCollection, rentRate } = this.state;
-    let totalCharge = 0;
-    Object.keys(myCollection).forEach((title) => {
-      const { rentDuration, numOfBooks } = myCollection[title];
-      totalCharge += rentDuration * rentRate * numOfBooks;
-    });
-
-    return totalCharge;
-  };
+    this.setState({ currentRead: newValue }, console.log(newValue, 'kkkkkkkk'));
 
   showMessage = (msg, state) => {
     switch (state) {
@@ -125,18 +113,54 @@ class App extends Component {
     this.setState({ myCollection: newCollection });
   };
 
+  calculateTotalCharges = (book) => {
+    const { myCollection } = this.state;
+    const newCollection = { ...myCollection };
+    const {
+      rentDuration,
+      numOfBooks,
+      rentCharge,
+      minRentDuration,
+      minimumCharge,
+    } = myCollection[book];
+
+    if (minRentDuration && minimumCharge) {
+      newCollection[book].charge = minimumCharge;
+
+      if (rentDuration > minRentDuration) {
+        newCollection[book].charge +=
+          (rentDuration - minRentDuration) * rentCharge * numOfBooks;
+      }
+    } else {
+      newCollection[book].charge = rentDuration * rentCharge * numOfBooks;
+    }
+
+    this.setState({ myCollection: newCollection });
+  };
+
+  getTotalCharge = () => {
+    let totalCharge = 0;
+    const { myCollection } = this.state;
+    Object.values(myCollection).forEach((book) => {
+      totalCharge += book.charge;
+    });
+    return totalCharge;
+  };
+
   render() {
     const {
-      addToCollection,
-      setBookState,
       state,
-      calculateTotalCharges,
+      setBookState,
+      addToCollection,
+      addRentDays,
+      addNumOfBooks,
+      removeFromCollection,
+      getTotalCharge,
     } = this;
     const { currentRead, myCollection } = state;
 
     const notEmptyCollection = Object.keys(myCollection).length > 0;
     const disableInputs = Object.keys(myCollection).length >= maxRentedBooks;
-    const totalCharge = calculateTotalCharges();
 
     return (
       <div className='container'>
@@ -160,15 +184,14 @@ class App extends Component {
               />
             </form>
             {notEmptyCollection && (
-              <div>
-                {Object.keys(myCollection)
-                  .reverse()
-                  .map((title, index) =>
-                    collectionRow(title, myCollection[title], index)
-                  )}
-              </div>
+              <Collection
+                removeFromCollection={removeFromCollection}
+                addNumOfBooks={addNumOfBooks}
+                addRentDays={addRentDays}
+                books={myCollection}
+              />
             )}
-            {totalCharge > 0 && renderTotalCharge(totalCharge)}
+            {notEmptyCollection > 0 && <Charges charges={getTotalCharge()} />}
           </div>
         </div>
       </div>
