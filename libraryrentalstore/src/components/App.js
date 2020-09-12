@@ -4,7 +4,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import BookForm from './BookForm';
 import Collection from './Collection';
 import Charges from './Charges';
-import { catalogue } from '../API/Catalogue.json';
+import catalogue from '../API/Catalogue.json';
+
 import {
   defaultRentDuration,
   defaultBookCount,
@@ -15,20 +16,6 @@ import '../index.css';
 
 
 let allBooks = [];
-Object.keys(catalogue).forEach(category => {
-  const { books, rentCharge, minRentDuration, minimumCharge } = catalogue[category];
-  books.forEach(book => {
-    book.rentCharge = rentCharge;
-    book.category = category;
-    if (minRentDuration) {
-      book.minRentDuration = minRentDuration;
-    }
-    if (minRentDuration) {
-      book.minimumCharge = minimumCharge;
-    }
-  });
-  allBooks = [...allBooks, ...books];
-});
 
 const getSuggestions = (value) => {
   const inputValue = value.trim().toLowerCase();
@@ -50,6 +37,28 @@ class App extends Component {
     myCollection: {},
     suggestions: [],
   };
+
+  componentDidMount() {
+    fetch('.src/API/Catalogue.json')
+      .then((catalogue) => catalogue.json())
+
+    Object.keys(catalogue.catalogue).forEach((category) => {
+      const { books, rentCharge, minRentDuration, minimumCharge } = catalogue.catalogue[
+        category
+      ];
+      books.forEach((book) => {
+        book.rentCharge = rentCharge;
+        book.category = category;
+        if (minRentDuration) {
+          book.minRentDuration = minRentDuration;
+        }
+        if (minRentDuration) {
+          book.minimumCharge = minimumCharge;
+        }
+      });
+      allBooks = [...allBooks, ...books];
+    });
+  }
 
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({ suggestions: getSuggestions(value) });
