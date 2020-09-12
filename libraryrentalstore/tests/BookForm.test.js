@@ -3,7 +3,7 @@ import Enzyme from 'enzyme';
 import { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import BookForm from '../components/BookForm';
+import BookForm from '../src/components/BookForm';
 
 Enzyme.configure({ adapter: new Adapter() });
 

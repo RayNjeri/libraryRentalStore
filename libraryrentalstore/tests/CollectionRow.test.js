@@ -3,7 +3,7 @@ import Enzyme from 'enzyme';
 import { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import CollectionRow from '../components/CollectionsRow';
+import CollectionRow from '../src/components/CollectionsRow';
 
 Enzyme.configure({ adapter: new Adapter() });
 

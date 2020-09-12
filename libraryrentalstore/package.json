@@ -35,5 +35,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|sass)$": "<rootDir>/tests/testUtilMock.js"
+    }
   }
 }
