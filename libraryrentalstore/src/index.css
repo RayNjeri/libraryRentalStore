@@ -14,21 +14,39 @@ body{
     background-attachment: fixed;
 }
 
+main{
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 100%;
+    overflow-y: auto;
+}
+
 span {
     padding: 5px;
 }
 
+h1{
+    margin-bottom: 5px;
+}
+
+input[type="number"] {
+    margin: 0 4px;
+    text-align: center;
+    border: 1px solid #ee3f5a3b;
+}
+
 input[type="submit"] {
-    background: #1fbfc2;
-    border: 1px solid #1fbfc2;
+    background:#705156;
+    border: 1px solid #705156;
     color: #fff;
     padding: 0 30px;
     cursor: pointer;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
 }
 
 input[type="submit"]:hover {
-    background: #1fbfc2;
-    border: 1px solid #1fbfc2;
+    background: #693f54;
 }
 
 input[type="submit"]:disabled, input[type="submit"]:disabled:hover {
@@ -37,62 +55,138 @@ input[type="submit"]:disabled, input[type="submit"]:disabled:hover {
 }
 
 input[type="search"] {
+    background: #fff;
+    min-width: 250px;
     width: 250px;
     padding-right: 5px;
 }
 
-.form > * {
+.form {
+    display: flex;
+    margin: 20px 0;
+}
+
+.form input {
     border: 0;
-    padding: 0 0 0 10px;
-    background: #fff;
+    padding: 0 5px 0 5px;
     line-height: 50px;
     font-size: 1rem;
     border-radius: 0;
     outline: 0;
+    -webkit-appearance: none;
 }
 
 .container{
     height: 100%;
     display: flex;
-    margin: auto;
-    flex-flow: row wrap;
+    margin: auto 0;
+    min-width: 550px;
+    flex-flow: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .welcomeMessage {
-    color: #ffffffd1;
+    color: #ffffff;
     text-align: center;
     min-width:200px;
     font-weight: 200;
     font-size: larger;
 }
 
-.cover {
-    padding-top: 20px;
-}
 
-.myCollection, .totalCharge {
+.collections-row, .charges, .collections-header {
     background-color: #FFFFFFF0;
     color: #4b4b4b;
-    margin-top: 5px;
+    margin-top: 2px;
     display: flex;
     flex-flow: nowrap;
     justify-content: space-between;
     border-radius: 2px;
-    font-size: 16px;
+    font-size: 20px;
     padding: 3px;
 }
 
-.totalCharge {
-
-    background: #1fbfc2;
-    border: 1px solid #1fbfc2;
-    color: #fff;
-    font-size: 20px;
-    font-weight: 500;
+.charges {
+    background-color: #705156;
+    color:rgb(10, 10, 10);
+    font-size: 18px;
+    font-weight: 600;
 }
-.titleSpan{
+
+.collections-header {
+    background: #705156;
+    border: 1px solid #705156;
+    color:  rgb(10, 10, 10);
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.titleSpan {
     text-align: left;
     flex-grow: 1;
+}
+
+.collections-header{
+    border-right: 1px solid  rgb(10, 10, 10);
+}
+
+.category {
+    min-width: 100px;
+}
+
+.book-copies, .book-copies > input{
+    min-width: 60px;
+    width: 60px;
+}
+
+.rent-duration, .rent-duration > input{
+    min-width: 125px;
+}
+
+.charge {
+    text-align: center;
+    min-width: 50px;
+}
+
+.action {
+    min-width: 48px;
+}
+
+.delete-btn {
+    min-width: 55px;
+    padding: 0;
+    background: #FFF;
+    border: none;
+    color: #cf0725;
+}
+
+.delete-btn:hover {
+    background:#cf0725;
+    color: #FFF;
+}
+
+.react-autosuggest__container {
+    width: 100%;
+}
+
+.react-autosuggest__suggestions-container {
+    width: 250px;
+    position: absolute;
+    background-color: rgb(202, 178, 178);
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.react-autosuggest__suggestions-container ul {
+    margin: 0;
+    padding: 0;
+    line-height: 32px;
+}
+.react-autosuggest__suggestions-container li {
+    padding: 0 10px;
+    list-style: none;
+}
+.react-autosuggest__suggestion--highlighted {
+    background-color: rgba(49, 13, 19, 0.31);;
 }
