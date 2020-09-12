@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import React from 'react';
 import Enzyme from 'enzyme';
 import { mount } from 'enzyme';
@@ -23,12 +22,6 @@ const props = {
   addNumOfBooks,
   removeFromCollection,
   addRentDays,
-};
-
-const wrapperWithoutBooks = () => {
-  const propsWithoutBooks = { ...props };
-  propsWithoutBooks.books = {};
-  return mount(<Collection {...propsWithoutBooks} />);
 };
 
 const wrapper = mount(<Collection {...props} />);
